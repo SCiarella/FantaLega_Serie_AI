@@ -7,7 +7,7 @@ group = parser.add_argument_group('evaluation parameters')
 group.add_argument(
     '--ev_type',
     type=str,
-    choices=['fantagazzetta','piopy'],
+    choices=['manuale','fantagazzetta','piopy'],
     default='fantagazzetta',
     help='scegli come classificare i giocatori: fantagazzetta/piopy')
 

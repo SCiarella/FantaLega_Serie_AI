@@ -2,7 +2,7 @@
 
 # FantaLega Serie AI
 
-Framework to use artificial intelligence to 
+Framework to use artificial intelligence to generate optimal *Lega Serie A* fantasy football teams.
 
 [**Getting started**](#Getting-started)
 | [**Quick run**](#Quick-run)
@@ -10,23 +10,36 @@ Framework to use artificial intelligence to
 
 ## Overview
 
-The repository consist in a series of python codes named `step[0-4].py` . 
+The goal of Fanta-AI is to suggest an optimal auction strategy to maximize your chances of winning the next season of your fantasy league.
+The project is divided into two main parts: 
+* **Evaluation** of all the players
+* **Auction** strategy
 
-In brief, each of them has the following task:
-* **step0.py**:  data collection and preprocessing
-* **step1.py**:  [re-]train the double well (DW) classifier
-* **step2.py**:  DW classification
-* **step3.py**:  [re-]train the predictor
-* **step4.py**:  prediction of the target property of all the pairs (i.e. the quantum splitting)
-
-
-Those codes run using the content of the MLmodel directory.
-There is also a supporting file named `myparams.py` that allows the user to control the procedure as explained in detail in the next section.
-Let's discuss step by step this procedure, using as example the TLS identification problem.
+All the data and results are based on *Lega Serie A*, but you are allowed to modify the framework to accommodate any international league.
+Let's discuss step by step Fanta-AI using as example the Serie A stagione 22/23, and good luck with your next season!
 
 
-#### Step 0: Data collection and preprocessing
+#### Evaluation of the players
 
+If you are passionate for fantacalcio like me, you probably know that the winner of the league is mainly determined by luck and chance, but in order to be a candidate for this lottery you have to build a solid team. 
+To build an optimal team it is necessary to pick good players.
+The first step is then to estimate the potential of each player.
+
+In this project there are 3 available alternatives for the player evaluation that can be selected using the `--ev_type [manuale/fantagazzetta/piopy`, which correspond to: 
+* **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank themselves the players. To perform this operation the user has to look at the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
+|Ruolo     | Nome                     | Valutazione|
+|----------|--------------------------|------------|
+|[P/D/C/A] | [cognome del calciatore] |[da 1 a 100]|
+|P         | Provedel                 |      25    |
+|...       |         ...              |            |
+|A         | Osimhen                  |   95       |    
+You can edit this file and change the rank (`Valutazione`) as you prefer. For future seasons and different leagues, you have to update the player list and their corresponding role.
+* **Fantagazzetta**: you can download the list of players from [fantacalcio.it](https://www.fantacalcio.it/quotazioni-fantacalcio). This has to be placed in `Players_evaluation/Quotazioni_Fantagazzetta.xlsx`. The evaluation of the players will be made according to fantagazzetta.
+* **Fantaciclopedia** (piopy): based on [piopy](https://github.com/piopy/fantacalcio-py) tool, this evaluation uses the real statistics of the last two seasons, available on fantaciclopedia. To perform this type of evaluation you have to run
+```
+python Evaluate_players.py 
+```
+Notice that the output `Players_evaluation/giocatori_excel.xls` is very interesting by itself, as discussed [here](https://github.com/piopy/fantacalcio-py).
 
 ---
   

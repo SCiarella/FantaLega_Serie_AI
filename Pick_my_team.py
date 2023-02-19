@@ -76,8 +76,26 @@ for role in ['P','D','C','A']:
 
 # Then for the new season I interpret what the price is going to be for each player
 
-if args.ev_type == 'piopy':
-    # Alternative (1); piopy code
+if args.ev_type == 'manuale':
+    # Alternative (1): manual evaluation
+    print('\n* La valutaione dei gicatori verra fatta usando il ranking sviluppato da piopy https://github.com/piopy/fantacalcio-py')
+    new_season=pd.read_excel('./Players_evaluation/Le_mie_valutazioni.xlsx',header=0)
+    print(new_season)
+    full_df=pd.DataFrame()
+    role_number_list=[]
+    for index,role in enumerate(['P','D','C','A']):
+        players = (new_season[new_season['Ruolo']==role]).sort_values(by=['Valutazione'],ascending=False)
+        prices_pad = np.ones(len(players['Valutazione']))
+        prices_pad[:len(average_list[index])] = average_list[index]
+    
+        players['prezzo_predetto'] = prices_pad
+        players.to_csv('./Predicted_prices/price_predictions_role-%s.csv'%role)
+    
+        full_df = pd.concat( [full_df,players], axis=0)
+    
+        role_number_list.append(len(players['Ruolo']) )
+elif args.ev_type == 'piopy':
+    # Alternative (2): piopy code
     print('\n* La valutaione dei gicatori verra fatta usando il ranking sviluppato da piopy https://github.com/piopy/fantacalcio-py')
     new_season=pd.read_excel('./Players_evaluation/giocatori_excel.xls')
     new_season = new_season[['Nome','Punteggio','Ruolo']]
@@ -98,7 +116,7 @@ if args.ev_type == 'piopy':
         role_number_list.append(len(players['Ruolo']) )
 
 elif args.ev_type == 'fantagazzetta':
-    # Alternative (2): fantagazzetta
+    # Alternative (3): fantagazzetta
     print('\n* La valutaione dei gicatori verra fatta usando il ranking di fantagazzetta https://www.fantacalcio.it/')
     new_season=pd.read_excel('./Players_evaluation/Quotazioni_Fantagazzetta.xlsx', names=['id','Ruolo','Ruolo_esteso','Nome','Squadra','Quota_A','Quota_I','diff','Quota_A_mantra', 'Quota_I_mantra', 'diff_mantra', 'Valutazione', 'Valutazione_mantra'])
     new_season = new_season.iloc[1: , :]
