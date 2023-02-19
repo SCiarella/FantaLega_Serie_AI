@@ -25,7 +25,7 @@ weights_sum=np.sum(weights_for_past_years)
 weights_for_past_years=weights_for_past_years/np.sum(weights_for_past_years)
 
 
-
+print('Reading auction data:')
 for db in list_db:
     year = db.split('-db')[0].split('/')[-1]
     print('{}\t{}'.format(db,year))
@@ -43,7 +43,7 @@ for role in ['P','D','C','A']:
     try:
         average
     except:
-        print('defining average')
+        print('Generating average auction')
     else:
         del average
         del av_weights

@@ -1,3 +1,7 @@
+# This code has been developed by user piopy
+# and it is available as an indipendent tool at:
+#   https://github.com/piopy/fantacalcio-py
+
 import ast
 import os
 from random import randint
@@ -7,6 +11,7 @@ import requests
 from tqdm import tqdm
 import pandas as pd
 from loguru import logger
+
 
 ruoli = ["Portieri", "Difensori", "Centrocampisti", "Trequartisti", "Attaccanti"]
 
