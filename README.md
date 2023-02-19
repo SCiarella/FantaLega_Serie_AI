@@ -2,7 +2,7 @@
 
 # FantaLega Serie AI
 
-Framework to use artificial intelligence to generate optimal *Lega Serie A* fantasy football teams.
+Framework to use artificial intelligence to generate optimal fantasy football teams.
 
 [**Getting started**](#Getting-started)
 | [**Quick run**](#Quick-run)
@@ -14,13 +14,13 @@ The project is divided into two main parts:
 * **Evaluation** of all the players
 * **Auction** strategy
 
-All the data and results are based on *Lega Serie A*, but you are allowed to modify the framework to accommodate any international league.
+All the data and results are based on *Lega Serie A*, but you are invited to modify the framework in order to accommodate your favorite international league.
 Let's discuss step by step Fanta-AI using as example the Serie A stagione 22/23, and good luck with your next season!
 
 
 ### Evaluation of the players
 
-If you are passionate for fantacalcio like me, you probably know that the winner of the league is mainly determined by luck and chance, but in order to be a candidate for this lottery you have to build a solid team. 
+If you are passionate for fantacalcio like me, you probably know that the winner of the fantasy league is mainly determined by luck, but in order to be a candidate for this lottery you have to build a solid team. 
 To build an optimal team it is necessary to pick good players.
 The first step is then to estimate the potential of each player.
 
@@ -93,24 +93,15 @@ pip install -r requirements.txt
 ---
 ## Quick run
 
-The first step is to correctly set the parameters in `myparams.py` in order to point to the correct location for the input files.  
-The most fundamental and necessary file is the database containing all the available pairs `In_data/{myparams.In_file}`. 
-Then in order to start the iterative procedure some initial observations are required. These can either be pretraining sets in `MLmodel/{myparams.pretraining_classifier}` and `MLmodel/{myparams.pretraining_predictor}`, or alternatively some calculations over `In_data/{myparams.In_file}` that have to be stored in `exact_calculations/{In_file_label}/{myparams.calculations_classifier}` and `exact_calculations/{In_file_label}/{myparams.calculations_classifier}`.
+1. (Optional) if you want to use piopy evaluation method
+```
+python Evaluate_players.py 
+```
 
-After this, it is possible to run a full iteration consisting in `step[1-4].py` .
-Finally this will produce the output file `output_ML/predicted_{In_file_label}_newpairs.csv` that contains the predicted `target_feature` for all the available pairs:
-
-| conf | i | j | target_feature |
-|:----:|:-:|:-:|:--------------:|
-| ...  |...|...|...             |
-|      |   |   |                |
-
-the database contains only the pairs for which the exact calculation is not available and it is sorted based on the value of `target_feature`.
-
-The final step of the iteration consists in calculating the exact value of `target_feature` for the best $K_i$ pairs, which corresponds to the first $K_i$ lines of `output_ML/predicted_{In_file_label}_newpairs.csv` if the target is a low value of `target_feature`.
-You can reiterate this procedure as many time as you want and add new input pairs at any iteration.  
-In the [paper](https://arxiv.org/abs/2212.05582), we discuss some criteria to decide the value of $K_0$, the number of iteration and the stopping criterion.
-
+2. Pick an optimal team
+```
+python Pick_my_team.py
+```
 
 ---
 ## Acknowledgements
