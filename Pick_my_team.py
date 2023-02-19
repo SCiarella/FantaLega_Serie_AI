@@ -13,6 +13,10 @@ try:
     os.makedirs('./Squadre_generate')
 except OSError:
     pass
+try:
+    os.makedirs('./Predicted_prices')
+except OSError:
+    pass
 
 
 list_db=sorted(glob('./Past_auctions_data/*-db.csv'))
