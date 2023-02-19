@@ -29,7 +29,7 @@ In this project there are 3 available alternatives for the player evaluation tha
 * **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank themselves the players. To perform this operation the user has to look at the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
 
 |Ruolo     | Nome                     | Valutazione|
-|----------|--------------------------|------------|
+|:--------:|:------------------------:|:----------:|
 |[P/D/C/A] | [cognome del calciatore] |[da 1 a 100]|
 |P         | Provedel                 |      25    |
 |...       |         ...              |            |
