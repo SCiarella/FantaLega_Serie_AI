@@ -66,39 +66,7 @@ pip install -r requirements.txt
 ```
 
 ---
-## Overview
 
-The repository consist in a series of python codes named `step[0-4].py` . 
-
-In brief, each of them has the following task:
-* **step0.py**:  data collection and preprocessing
-* **step1.py**:  [re-]train the double well (DW) classifier
-* **step2.py**:  DW classification
-* **step3.py**:  [re-]train the predictor
-* **step4.py**:  prediction of the target property of all the pairs (i.e. the quantum splitting)
-
-
-Those codes run using the content of the MLmodel directory.
-There is also a supporting file named `myparams.py` that allows the user to control the procedure as explained in detail in the next section.
-Let's discuss step by step this procedure, using as example the TLS identification problem.
-
-
-#### Step 0: Data collection and preprocessing
-
-The first step of the procedure consist in collecting the relevant input features for the different pairs of states.
-In the example `step0.py` we load the database of IS pairs that we use in our [paper](https://arxiv.org/abs/2212.05582), which is uploaded on [Zenodo](https://zenodo.org/) [TBD] and contains the input features discussed in the paper.
-The user can then specify the correct input file name as `myparams.In_file` .
-The input database is expected to have the following structure:
- 
-|              |feature 1| feature 2| ... | feature $N_f$ |
-|--------------|---------|----------|-----|---------------|
-|pair $i_1 j_1$|         |          |     |               |
-|pair $i_2 j_1$|         |          |     |               |
-|...           |         |          |     |               |
-|pair $i_N j_N$|         |          |     |               |
-
-Notice that the database does not contain the output feature (i.e. the quantum splitting), because we do not know its value for all the pairs and the goal of this procedure is to calculate it only for a small selected groups of pairs.
-For a different problem than the one we discuss, we suggest to start with the inclusion of additional descriptors such as [SOAP](https://singroup.github.io/dscribe/1.0.x/tutorials/descriptors/soap.html) or [bond orientational order parameters](https://pyscal.org/en/latest/examples/03_steinhardt_parameters.html).
 
 
 #### Step 1: Training the classifier
