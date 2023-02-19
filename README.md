@@ -2,63 +2,53 @@
 
 # FantaLega Serie AI
 
-  
-Two-level systems (TLS) are rare quantum tunneling defects which govern the physics of glasses at very low temperature. Because of their extremely low density, it is very hard to directly identify them in computer simulations of model glasses. We introduce a machine learning approach to efficiently explore the potential energy landscape of glass models and identify two-level tunneling defects. We design an algorithm that is able to rapidly predict the quantum splitting between any two amorphous configurations produced by classical simulations. This in turn allows us to shift the computational effort towards the collection and identification of a larger number of TLS, rather than the useless characterization of non-tunneling defects which are much more abundant. Finally, we interpret our machine learning model to understand how TLS are identified and characterized, thus giving physical insight into the features responsible for their presence.
+Framework to use artificial intelligence to 
 
----
-*In this repository we share the code used to produce the main findings of the paper. We also show step by step how this approach can be generalized to study other state-to-state transitions.*
-
----
-  
-
-## State-to-state transitions with machine learning
-
-[**Installation**](#Installation)
+[**Getting started**](#Getting started)
 | [**Quick run**](#Quick-run)
-| [**Reproduce TLS results**](https://arxiv.org/abs/2212.05582)
+| [**Improve predictions**](https://arxiv.org/abs/2212.05582)
+
+## Overview
+
+The repository consist in a series of python codes named `step[0-4].py` . 
+
+In brief, each of them has the following task:
+* **step0.py**:  data collection and preprocessing
+* **step1.py**:  [re-]train the double well (DW) classifier
+* **step2.py**:  DW classification
+* **step3.py**:  [re-]train the predictor
+* **step4.py**:  prediction of the target property of all the pairs (i.e. the quantum splitting)
 
 
-
-The idea of this project is to use machine learning to **speed up** the exploration of the landscape of glassy materials or slow dynamics, with particular focus on the *iterative training* scheme that we introduced.
-State-to-state transitions like two-level systems are extremely interesting, but when the dynamics is slow they are very hard to find, and the situation is even worse for glassy systems, characterized by an exponential number of states.
-The problem is that often the trajectory of the system does not explore directly the targetted state-to-state transitions during the limited observation time.
-The ML model that we propose constructs all the pairs of states (even the one that the trajectory never crossed) and rapidly (<img src="https://latex.codecogs.com/svg.image?10^{-5}" /> s) predicts target crucial properties for the specific transition, thus estimating if the pair is one of the desired transition and if precise calculation is needed. Overall this significantly reduces the computational load. 
+Those codes run using the content of the MLmodel directory.
+There is also a supporting file named `myparams.py` that allows the user to control the procedure as explained in detail in the next section.
+Let's discuss step by step this procedure, using as example the TLS identification problem.
 
 
+#### Step 0: Data collection and preprocessing
 
-## Installation
 
-To install all the prerequired packages from a fresh conda environment run the following
+---
+  
+
+## Getting started
+
+1. Clone this repository
 ```
-conda create -n tls_exploration -y python=3.9
-conda activate tls_exploration
-conda install -y -c conda-forge statsmodels
-conda install -c conda-forge multiprocess -y
-git clone https://github.com/SCiarella/autogluon
-cd autogluon && ./full_install.sh
-```
-
-> **_NOTE_**:  If you are a MacOS user you need to manually install the correct version of LibOMP via:
-```
-# brew install wget
-wget https://raw.githubusercontent.com/Homebrew/homebrew-core/fb8323f2b170bd4ae97e1bac9bf3e2983af3fdb0/Formula/libomp.rb
-brew uninstall libomp
-brew install libomp.rb
-rm libomp.rb
-```
-
-If you are interested in performing [SHAP](https://github.com/slundberg/shap) analysis of the trained model using the scripts provided here, you also need to install the following packages:
-```
-pip install shap seaborn
+git clone https://github.com/SCiarella/FantaLega_Serie_AI.git
 ```
 
-Then you can proceed with the download of this repository
+2. Setup virtual environment
 ```
-cd ~
-git clone https://github.com/SCiarella/TLS_ML_exploration.git
+cd FantaLega_Serie_AI/
+python -m venv fantaAI-venv
+source ./fantaAI-venv/bin/activate
 ```
 
-The package is already ready to run and it just needs your new data. 
+3. Install requirements
+```
+pip install -r requirements.txt
+```
 
 ---
 ## Overview
@@ -201,8 +191,6 @@ In the [paper](https://arxiv.org/abs/2212.05582), we discuss some criteria to de
 
 
 ---
-## Reproduce TLS results
+## Acknowledgements
 
-
-| :no_entry:   | [Work in progress] We are updating the package. The content below is not consistent with the present version of the repository|
-|--------------|:------------------------------------------------------------------------------------------------------------------------------|
+Part of this implementation is based on the project of
