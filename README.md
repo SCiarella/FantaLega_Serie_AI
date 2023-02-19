@@ -4,7 +4,7 @@
 
 Framework to use artificial intelligence to 
 
-[**Getting started**](#Getting started)
+[**Getting started**](#Getting-started)
 | [**Quick run**](#Quick-run)
 | [**Improve predictions**](https://arxiv.org/abs/2212.05582)
 
