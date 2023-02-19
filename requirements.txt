@@ -4,3 +4,5 @@ pandas
 loguru
 tqdm
 requests
+matplotlib
+xlrd
