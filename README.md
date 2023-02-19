@@ -1,5 +1,4 @@
 <img src="./doc/fig_head.png" width="1100" />
-<img src="./doc/fig_head2.png" width="1100" />
 
 # FantaLega Serie AI
 
