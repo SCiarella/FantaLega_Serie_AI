@@ -18,13 +18,13 @@ All the data and results are based on *Lega Serie A*, but you are allowed to mod
 Let's discuss step by step Fanta-AI using as example the Serie A stagione 22/23, and good luck with your next season!
 
 
-#### Evaluation of the players
+### Evaluation of the players
 
 If you are passionate for fantacalcio like me, you probably know that the winner of the league is mainly determined by luck and chance, but in order to be a candidate for this lottery you have to build a solid team. 
 To build an optimal team it is necessary to pick good players.
 The first step is then to estimate the potential of each player.
 
-In this project there are 3 available alternatives for the player evaluation that can be selected using the `--ev_type [manuale/fantagazzetta/piopy`, which correspond to: 
+In this project there are 3 available alternatives for the player evaluation that can be selected using the `--ev_type [manuale/fantagazzetta/piopy]` argument, which correspond to: 
 * **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank themselves the players. To perform this operation the user has to look at the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
 
 |Ruolo     | Nome                     | Valutazione|
@@ -40,34 +40,33 @@ You can edit this file and change the rank (`Valutazione`) as you prefer. For fu
 ```
 python Evaluate_players.py 
 ```
-Notice that the output `Players_evaluation/giocatori_excel.xls` is very interesting by itself, as discussed [here](https://github.com/piopy/fantacalcio-py).
+Notice that the output `Players_evaluation/giocatori_excel.xls` is very interesting by itself (and useful for any fantallenatore), as discussed [here](https://github.com/piopy/fantacalcio-py).
 
 
-#### Pick the best team
+### Pick the best team
 
 After you have evaluated all the players according to your favorite metric, you have to build your team during the auction. 
 This project is based on the following 2 assumptions to model the auction:
-* all the auctioneers (your friends in the fantalega) are decent players and their evaluation will not be much different compared to yours  
-* the auction is a classic english auction, with open ascending bids (la classica `asta a chiamata`)
+* All the auctioneers (your friends in the fantalega) are decent players and their evaluation will not be much different compared to yours.  
+* The auction is a classic english auction, with open ascending bids (la classica *asta a chiamata*)
+
 Accepting this assumptions, we can model the fantacalcio auction as a `knapsack problem` which is a typical problem in combinatorial optimization. 
 
 To solve this problem, FantaAI implements a genetic algorithm that evolves to generate the best teams that you can realistically expect to build during your real auction. You can run it using
 ```
 python Pick_my_team.py # --[arguments]
 ``` 
-There are several arguments that can be set for the specific use case 
-The supporting file `myparams.py` allows the user to set the correct hyperpameters. Here it is reported the list with all the parameters that can be set in this way:
-* **In_file**: name of the input file
-* **pretraining_classifier**: name of the pretraining file for the classifier
-* **pretraining_predictor**: name of the pretraining file for the predictor
-* **calculations_classifier**: name of the file containing the list of pairs calculated in class-0
-* **calculations_predictor**: name of the file containing the calculation of the target feature
-* **class_train_hours**: training time in hours for the classifier
-* **pred_train_hours**: training time in hours for the predictor
-* **Fast_class**: if True use a lighter ML model for classification, with worse performance but better inference time 
-* **Fast_pred**: if True use a lighter ML model for prediction, with worse performance but better inference time
-* **ij_decimals**: number of significant digits to identify the states. If they are labeled using an integer number you can set this to 0
-* **validation_split**: ratio of data that go into the validation set
+There are several arguments that can be set for the specific use case, and to develop your favorite strategy: 
+* *--crediti* : initial budget for each team
+* *--n[P/D/C/A]* : number of players per role P/D/C/A for each team
+* *--max_b_[P/D/C/A]* : maximum percentage of the budget to invest in the specific role P/D/C/A
+* *--t[P/D/C/A]* : target of **good** players per role. An optimal team invest most of its budget in a few solid picks rater than spreading too much
+* *--bonus_multiplier* : how much to weight the top players for each role
+* *--pop_size* : size of the population for the genetic algorithm
+* *--num_gen* : number of generations of evolution
+* *--mutation_rate* : rate of mutations for the genetic algorithm
+* *--swap_mutation_rate* : rate of recombinations for the genetic algorithm
+
 ---
   
 
