@@ -27,12 +27,14 @@ The first step is then to estimate the potential of each player.
 
 In this project there are 3 available alternatives for the player evaluation that can be selected using the `--ev_type [manuale/fantagazzetta/piopy`, which correspond to: 
 * **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank themselves the players. To perform this operation the user has to look at the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
+
 |Ruolo     | Nome                     | Valutazione|
 |----------|--------------------------|------------|
 |[P/D/C/A] | [cognome del calciatore] |[da 1 a 100]|
 |P         | Provedel                 |      25    |
 |...       |         ...              |            |
 |A         | Osimhen                  |   95       |    
+
 You can edit this file and change the rank (`Valutazione`) as you prefer. For future seasons and different leagues, you have to update the player list and their corresponding role.
 * **Fantagazzetta**: you can download the list of players from [fantacalcio.it](https://www.fantacalcio.it/quotazioni-fantacalcio). This has to be placed in `Players_evaluation/Quotazioni_Fantagazzetta.xlsx`. The evaluation of the players will be made according to fantagazzetta.
 * **Fantaciclopedia** (piopy): based on [piopy](https://github.com/piopy/fantacalcio-py) tool, this evaluation uses the real statistics of the last two seasons, available on fantaciclopedia. To perform this type of evaluation you have to run
