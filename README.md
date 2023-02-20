@@ -2,7 +2,7 @@
 
 # FantaLega Serie AI
 
-Framework to use artificial intelligence to generate optimal fantasy football teams.
+Framework to use Artificial Intelligence (AI) to generate optimal fantasy football teams.
 
 [**Getting started**](#Getting-started)
 | [**Quick run**](#Quick-run)
@@ -50,7 +50,7 @@ This project is based on the following 2 assumptions to model the auction:
 * All the auctioneers (your friends in the fantalega) are decent players and their evaluation will not be much different compared to yours.  
 * The auction is a classic english auction, with open ascending bids (la classica *asta a chiamata*)
 
-Accepting this assumptions, we can model the fantacalcio auction as a `knapsack problem` which is a typical problem in combinatorial optimization. 
+Accepting this assumptions, we can model the fantacalcio auction as a **knapsack problem** which is a typical problem in *combinatorial optimization*. 
 
 To solve this problem, FantaAI implements a genetic algorithm that evolves to generate the best teams that you can realistically expect to build during your real auction. You can run it using
 ```
