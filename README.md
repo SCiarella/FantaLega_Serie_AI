@@ -25,7 +25,7 @@ To build an optimal team it is necessary to pick good players.
 The first step is then to estimate the potential of each player.
 
 In this project there are 3 available alternatives for the player evaluation that can be selected using the `--ev_type [manuale/fantagazzetta/piopy]` argument, which correspond to: 
-* **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank themselves the players. To perform this operation the user has to look at the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
+* **Manual** evaluation: for hardcore players that know better than anyone else, the optimal strategy is to manually rank the players. To perform this operation the user has to follow the excel table `Players_evaluation/Le_mie_valutazioni.xlsx`, which has the following structure:
 
 |Ruolo     | Nome                     | Valutazione|
 |:--------:|:------------------------:|:----------:|
@@ -35,12 +35,12 @@ In this project there are 3 available alternatives for the player evaluation tha
 |A         | Osimhen                  |   95       |    
 
 You can edit this file and change the rank (`Valutazione`) as you prefer. For future seasons and different leagues, you have to update the player list and their corresponding role.
-* **Fantagazzetta**: you can download the list of players from [fantacalcio.it](https://www.fantacalcio.it/quotazioni-fantacalcio). This has to be placed in `Players_evaluation/Quotazioni_Fantagazzetta.xlsx`. The evaluation of the players will be made according to fantagazzetta.
+* **Fantagazzetta**: you can download the list of players from [fantacalcio.it](https://www.fantacalcio.it/quotazioni-fantacalcio). This has to be placed in `Players_evaluation/Quotazioni_Fantagazzetta.xlsx`. The evaluation of the players will be made according to the professional journalist from fantagazzetta.
 * **Fantaciclopedia** (piopy): based on [piopy](https://github.com/piopy/fantacalcio-py) tool, this evaluation uses the real statistics of the last two seasons, available on fantaciclopedia. To perform this type of evaluation you have to run
 ```
 python Evaluate_players.py 
 ```
-Notice that the output `Players_evaluation/giocatori_excel.xls` is very interesting by itself (and useful for any fantallenatore), as discussed [here](https://github.com/piopy/fantacalcio-py).
+Notice that the output `Players_evaluation/giocatori_excel.xls` is highly informative and detailed, and can serve as a valuable tool in the arsenal of the good fantallenatore. I invite you to explore its details [here](https://github.com/piopy/fantacalcio-py).
 
 
 ### Pick the best team
@@ -48,7 +48,7 @@ Notice that the output `Players_evaluation/giocatori_excel.xls` is very interest
 After you have evaluated all the players according to your favorite metric, you have to build your team during the auction. 
 This project is based on the following 2 assumptions to model the auction:
 * All the auctioneers (your friends in the fantalega) are decent players and their evaluation will not be much different compared to yours.  
-* The auction is a classic english auction, with open ascending bids (la classica *asta a chiamata*)
+* The auction is a classic English auction, with open ascending bids (la classica *asta a chiamata*)
 
 Accepting this assumptions, we can model the fantacalcio auction as a **knapsack problem** which is a typical problem in *combinatorial optimization*. 
 
