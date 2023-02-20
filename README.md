@@ -14,7 +14,7 @@ The project is divided into two main parts:
 * **Evaluation** of all the players
 * **Auction** strategy
 
-All the data and results are based on *Lega Serie A*, but you are invited to modify the framework in order to accommodate your favorite international league.
+All the current data and results are based on *Lega Serie A*, but you are invited to modify the framework in order to accommodate your favorite international league.
 Let's discuss step by step Fanta-AI using as example the Serie A stagione 22/23, and good luck with your next season!
 
 
